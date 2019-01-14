@@ -17,7 +17,7 @@ $games = array(
     ),
 );
 
-
+$userLoggedIn = false;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,6 +32,16 @@ $games = array(
         </style>
     </head>
     <body>
+        <div class="">
+            <?php if( $userLoggedIn ){ ?>
+                Bienvenue Marco
+                <a href="#">Déconnexion</a>
+            <?php }else{ ?>
+                <a href="#">Se connecter</a>
+            <?php } ?>
+        </div>
+
+
 
         <table>
             <tr>
