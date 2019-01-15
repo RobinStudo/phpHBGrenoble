@@ -49,22 +49,13 @@ $userLoggedIn = false;
                 <th>Titre</th>
                 <th>Genre</th>
             </tr>
-
-            <tr>
-                <td><img src="<?php echo $games[0]['picture'] ?>"></td>
-                <td><?php echo $games[0]['name'] ?></td>
-                <td><?php echo $games[0]['genre'] ?></td>
-            </tr>
-            <tr>
-                <td><img src="<?php echo $games[1]['picture'] ?>"></td>
-                <td><?php echo $games[1]['name'] ?></td>
-                <td><?php echo $games[1]['genre'] ?></td>
-            </tr>
-            <tr>
-                <td><img src="<?php echo $games[2]['picture'] ?>"></td>
-                <td><?php echo $games[2]['name'] ?></td>
-                <td><?php echo $games[2]['genre'] ?></td>
-            </tr>
+            <?php foreach( $games as $game ){ ?>
+                <tr>
+                    <td><img src="<?php echo $game['picture'] ?>"></td>
+                    <td><?php echo $game['name'] ?></td>
+                    <td><?php echo $game['genre'] ?></td>
+                </tr>
+            <?php } ?>
         </table>
 
     </body>
