@@ -5,20 +5,27 @@ $pageTitle = 'Liste des jeux';
 include_once 'component/header.php';
 ?>
 
-<table>
-    <tr>
-        <th>Image</th>
-        <th>Titre</th>
-        <th>Genre</th>
-    </tr>
-    <?php foreach( $games as $game ){ ?>
+<?php $counter = count( $games ); ?>
+<?php if( $counter == 0 ){ ?>
+    <p>Aucun jeu disponible</p>
+<?php }else{ ?>
+    <p>Il y a <?php echo $counter; ?> jeu(x)</p>
+
+    <table>
         <tr>
-            <td><img src="<?php echo $game['picture'] ?>"></td>
-            <td><?php echo $game['name'] ?></td>
-            <td><?php echo $game['genre'] ?></td>
+            <th>Image</th>
+            <th>Titre</th>
+            <th>Genre</th>
         </tr>
-    <?php } ?>
-</table>
+        <?php foreach( $games as $game ){ ?>
+            <tr>
+                <td><img src="<?php echo $game['picture']; ?>"></td>
+                <td><?php echo $game['name']; ?></td>
+                <td><?php echo getGenre( $game['genre'] )['name']; ?></td>
+            </tr>
+        <?php } ?>
+    </table>
+<?php } ?>
 
 <?php
 include_once 'component/footer.php';

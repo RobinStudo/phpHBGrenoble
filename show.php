@@ -2,13 +2,16 @@
 require_once 'component/app.php';
 
 $game = $games[0];
-$totalReview = ( $game['pressReview'] + $game['playerReview'] ) / 2;
+$totalReview = averageReview([
+     $game['pressReview'], $game['playerReview']
+ ], 1);
+ $genre = getGenre( $game['genre'] );
 
 $pageTitle = $game['name'];
 include_once 'component/header.php';
 ?>
 
-<?php if( in_array( $game['genre'], $triggerGenre ) ){ ?>
+<?php if( $genre['warn'] === true ){ ?>
     <div class="">
         Ce jeu est reservé à un public averti
     </div>
@@ -29,6 +32,9 @@ include_once 'component/header.php';
 
     echo $totalReview;
     ?>
+</div>
+<div class="">
+    <?php echo $genre['name']; ?>
 </div>
 <div><?php echo date( 'd/m/Y', strtotime( $game['releaseDate'] )); ?></div>
 <?php
