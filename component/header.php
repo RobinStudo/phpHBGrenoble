@@ -29,6 +29,11 @@
     </head>
     <body>
 
+        <form action="index.php" method="get">
+            <input type="search" name="query" placeholder="Rechercher ...">
+            <input type="submit" value="Rechercher">
+        </form>
+
         <div class="">
             <?php if( $userLoggedIn ){ ?>
                 Bienvenue Marco
