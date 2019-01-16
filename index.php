@@ -16,12 +16,14 @@ include_once 'component/header.php';
             <th>Image</th>
             <th>Titre</th>
             <th>Genre</th>
+            <th>Description</th>
         </tr>
         <?php foreach( $games as $game ){ ?>
             <tr>
                 <td><img src="<?php echo $game['picture']; ?>"></td>
                 <td><?php echo $game['name']; ?></td>
                 <td><?php echo getGenre( $game['genre'] )['name']; ?></td>
+                <td><?php echo truncateDescription( $game['description'] ); ?></td>
             </tr>
         <?php } ?>
     </table>

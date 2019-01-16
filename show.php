@@ -1,4 +1,13 @@
 <?php
+
+
+
+
+
+
+
+
+
 require_once 'component/app.php';
 
 $game = $games[0];
@@ -6,6 +15,9 @@ $totalReview = averageReview([
      $game['pressReview'], $game['playerReview']
  ], 1);
  $genre = getGenre( $game['genre'] );
+
+$releaseTime = strtotime( $game['releaseDate'] );
+$since = time() - $releaseTime;
 
 $pageTitle = $game['name'];
 include_once 'component/header.php';
@@ -17,7 +29,7 @@ include_once 'component/header.php';
     </div>
 <?php } ?>
 
-<h1><?php echo $game['name']; ?></h1>
+<h1><?php echo strtoupper( $game['name'] ); ?></h1>
 <?php echo '<p>' . $game['description'] . '</p>'; ?>
 <img src="<?php echo $game['picture']; ?>" alt="Affiche du jeu">
 <div>
@@ -36,7 +48,10 @@ include_once 'component/header.php';
 <div class="">
     <?php echo $genre['name']; ?>
 </div>
-<div><?php echo date( 'd/m/Y', strtotime( $game['releaseDate'] )); ?></div>
+<div>
+    <?php echo date( 'd/m/Y', $releaseTime ); ?><br/>
+    Le jeu est sortie il y <?php echo $since; ?> secondes
+</div>
 <?php
 include_once 'component/footer.php';
 ?>

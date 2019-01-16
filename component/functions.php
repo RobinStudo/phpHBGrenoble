@@ -22,3 +22,13 @@ function getGenre( $id ){
         }
     }
 }
+
+function truncateDescription( $description, $length = 40 ){
+    $short = substr( $description, 0, $length );
+
+    $pos = strrpos( $short, ' ' );
+    $short = substr( $short, 0, $pos );
+
+    $short .= ( strlen( $description ) > $pos ) ? '...' : '';
+    return $short;
+}
