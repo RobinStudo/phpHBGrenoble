@@ -1,16 +1,21 @@
 <?php
-
-
-
-
-
-
-
-
-
 require_once 'component/app.php';
 
-$game = $games[0];
+if( empty( $_GET['id'] ) ){
+    header('Location: index.php');
+    exit();
+}
+
+$gamesIds = array_column( $games, 'id' );
+$key = array_search( $_GET['id'], $gamesIds );
+
+if( $key === false ){
+    header('Location: index.php');
+    exit();
+}
+
+$game = $games[ $key ];
+
 $totalReview = averageReview([
      $game['pressReview'], $game['playerReview']
  ], 1);

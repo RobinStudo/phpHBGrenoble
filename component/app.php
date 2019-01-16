@@ -4,6 +4,7 @@ $premium = true;
 
 $games = array(
     array(
+        'id' => 1,
         'name' => 'The Witcher 3',
         'picture' => 'http://image.jeuxvideo.com/medias/142247/1422469608-7141-jaquette-avant.jpg',
         'genre' => 4,
@@ -15,6 +16,7 @@ $games = array(
         'playerReview' => 15.5,
     ),
     array(
+        'id' => 2,
         'name' => 'Rocket Loeague',
         'picture' => 'https://rocketleague.media.zestyio.com/rl_site_buy-box_new.f1cb27a519bdb5b6ed34049a5b86e317.jpg',
         'genre' => 5,
@@ -26,6 +28,7 @@ $games = array(
         'playerReview' => 12.5,
     ),
     array(
+        'id' => 3,
         'name' => 'SimCity',
         'picture' => 'https://images-na.ssl-images-amazon.com/images/I/71AflMaW6aL._SY445_.jpg',
         'genre' => 3,

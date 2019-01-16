@@ -32,6 +32,7 @@ include_once 'component/header.php';
             <th>Titre</th>
             <th>Genre</th>
             <th>Description</th>
+            <th>Voir</th>
         </tr>
         <?php foreach( $results as $game ){ ?>
             <tr>
@@ -39,6 +40,7 @@ include_once 'component/header.php';
                 <td><?php echo $game['name']; ?></td>
                 <td><?php echo getGenre( $game['genre'] )['name']; ?></td>
                 <td><?php echo truncateDescription( $game['description'] ); ?></td>
+                <td><a href="show.php?id=<?php echo $game['id']; ?>">Voir</a></td>
             </tr>
         <?php } ?>
     </table>
