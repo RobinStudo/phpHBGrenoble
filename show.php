@@ -98,6 +98,8 @@ include_once 'component/header.php';
         </div>
     <?php } ?>
 </div>
+
+<a href="upload.php?id=<?php echo $game['id']; ?>">Ajouter une nouvelle affiche</a>
 <?php
 include_once 'component/footer.php';
 ?>
