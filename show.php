@@ -24,6 +24,30 @@ $totalReview = averageReview([
 $releaseTime = strtotime( $game['releaseDate'] );
 $since = time() - $releaseTime;
 
+$comments = array();
+if( !empty( $_POST['username'] ) && !empty( $_POST['content'] ) ){
+    $username = trim( htmlspecialchars( $_POST['username'] ) );
+    $content = trim( htmlspecialchars( $_POST['content'] ) );
+
+    if( preg_match( '/^[A-Za-z0-9]{3,16}$/', $username ) ){
+        if( strlen( $content ) > 10 ){
+            $comment = [
+                'username' => $username,
+                'content' => $content,
+                'createdAt' => time(),
+            ];
+
+            $comments[] = $comment;
+        }else{
+            $error = "Votre commentaire doit contenir au minimum 10 caractères";
+        }
+    }else{
+        $error = "Votre nom d'utilisateur doit être alphanumérique entre 3 et 16 caractères";
+    }
+}else if( $_SERVER['REQUEST_METHOD'] == 'POST' ){
+    $error = "Vous devez remplir tous les champs";
+}
+
 $pageTitle = $game['name'];
 include_once 'component/header.php';
 ?>
@@ -56,6 +80,23 @@ include_once 'component/header.php';
 <div>
     <?php echo date( 'd/m/Y', $releaseTime ); ?><br/>
     Le jeu est sortie il y <?php echo $since; ?> secondes
+</div>
+
+<form method="post">
+    <p style="color:red;"><?php echo $error ?? ''; ?></p>
+    <input type="text" name="username" placeholder="Nom d'utilisateur">
+    <textarea name="content" rows="8" cols="80"></textarea>
+    <button type="submit">Commenter</button>
+</form>
+
+<div>
+    <?php foreach( $comments as $comment ){ ?>
+        <div>
+            <span><?php echo $comment['username']; ?></span>
+            <p><?php echo $comment['content']; ?></p>
+            <span>Publié a : <?php echo date( 'd/m/Y H:i', $comment['createdAt'] ); ?></span>
+        </div>
+    <?php } ?>
 </div>
 <?php
 include_once 'component/footer.php';
