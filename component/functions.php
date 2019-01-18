@@ -32,3 +32,23 @@ function truncateDescription( $description, $length = 40 ){
     $short .= ( strlen( $description ) > $pos ) ? '...' : '';
     return $short;
 }
+
+function writeLog( $line ){
+    $file = fopen( 'prod.log', 'a+' );
+    fwrite( $file, $line . PHP_EOL );
+    fclose( $file );
+}
+
+function writeLogVisit( $gid ){
+    $line = '[' . date('Y-m-d H:i:s') . '] ';
+    $line .= 'Visit on game ' . $gid;
+    $line .= ' from ' . $_SERVER['REMOTE_ADDR'];
+    writeLog( $line );
+}
+
+function writeLogUpload( $gid, $filename ){
+    $line = '[' . date('Y-m-d H:i:s') . '] ';
+    $line .= 'Uploaded ' . $filename;
+    $line .= ' for ' . $gid;
+    writeLog( $line );
+}

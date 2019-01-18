@@ -16,6 +16,8 @@ if( $key === false ){
 
 $game = $games[ $key ];
 
+writeLogVisit( $game['id'] );
+
 $totalReview = averageReview([
      $game['pressReview'], $game['playerReview']
  ], 1);
