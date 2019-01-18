@@ -18,6 +18,10 @@ if( !empty( $_POST['username'] ) && !empty( $_POST['password'] ) ){
 
             $_SESSION['auth'] = true;
             $_SESSION['user'] = $user;
+
+            $chain = $user['username'] . ':' . $user['password'];
+            setcookie( 'user', $chain, time() + 30 * 24 * 3600, null, null, false, true );
+
             header('Location: index.php');
 
         }

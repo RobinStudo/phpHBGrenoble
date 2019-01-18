@@ -4,6 +4,10 @@ session_start();
 $userLoggedIn = $_SESSION['auth'] ?? false;
 $premium = true;
 
+if( empty( $_COOKIE['lang'] ) ){
+    setcookie( 'lang', 'en', time() + 365 * 24 * 3600 );
+}
+
 $games = array(
     array(
         'id' => 1,
@@ -58,5 +62,28 @@ $users = array(
         'password' => '$2y$10$EbubL5PIQ/9/huQ0NVcLGevdNfpZZVi/xCrhMSWMUnrfjHfUNrdWu',
     )
 );
+
+if( !$userLoggedIn && !empty( $_COOKIE['user'] ) ){
+    $creds = explode( ':', $_COOKIE['user'] );
+
+    $user = false;
+    foreach( $users as $u ){
+        if( $u['username'] == $creds[0] ){
+            $user = $u;
+            break;
+        }
+    }
+
+    if( $user ){
+        if( $user['password'] == $creds[1] ){
+
+            $_SESSION['auth'] = true;
+            $_SESSION['user'] = $user;
+
+            $chain = $user['username'] . ':' . $user['password'];
+            setcookie( 'user', $chain, time() + 30 * 24 * 3600, null, null, false, true );
+        }
+    }
+}
 
 require_once 'functions.php';
