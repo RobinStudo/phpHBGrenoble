@@ -1,5 +1,7 @@
 <?php
-$userLoggedIn = false;
+session_start();
+
+$userLoggedIn = $_SESSION['auth'] ?? false;
 $premium = true;
 
 $games = array(
@@ -47,6 +49,14 @@ $genres = array(
     array( 'id' => 3, 'name' => 'Gestion', 'warn' => false ),
     array( 'id' => 4, 'name' => 'Horreur', 'warn' => true ),
     array( 'id' => 5, 'name' => 'Sport', 'warn' => false ),
+);
+
+$users = array(
+    array(
+        'username' => 'meco',
+        'email' => 'exemple@mail.com',
+        'password' => '$2y$10$EbubL5PIQ/9/huQ0NVcLGevdNfpZZVi/xCrhMSWMUnrfjHfUNrdWu',
+    )
 );
 
 require_once 'functions.php';

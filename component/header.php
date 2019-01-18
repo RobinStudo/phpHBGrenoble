@@ -36,9 +36,9 @@
 
         <div class="">
             <?php if( $userLoggedIn ){ ?>
-                Bienvenue Marco
-                <a href="#">Déconnexion</a>
+                Bienvenue <?php echo $_SESSION['user']['username']; ?>
+                <a href="logout.php">Déconnexion</a>
             <?php }else{ ?>
-                <a href="#">Se connecter</a>
+                <a href="login.php">Se connecter</a>
             <?php } ?>
         </div>
